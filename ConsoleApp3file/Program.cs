@@ -25,7 +25,7 @@ namespace ConsoleApp3file
 
         static void Main(string[] args)
         {
-            string IDFile = @"C:\Users\vbudianu\Desktop\VIO\t15\ConsoleApp3file\IDS.txt";
+            string IDFile = @"C:\Users\vbudianu\Desktop\VIO\t15\ConsoleApp3file\IDS2.txt";
             try
             {
                 if (File.Exists(IDFile))
@@ -51,14 +51,14 @@ namespace ConsoleApp3file
                     var IDc = IDcuvant.Groups[0].Value.ToString();
                     Console.WriteLine(IDcuvant.Groups[0].Value);
 
-
+                    
                     if (!Lista.ContainsKey(Int32.Parse(IDc)))
                     {
                         Lista.Add(Int32.Parse(IDc), new Obiect(Convert.ToString(Cuvant), 1));
                     }
                     else
                     {
-                        Lista[Int32.Parse(IDc)].count = Lista[Int32.Parse(IDc)].count++;
+                        Lista[Int32.Parse(IDc)].count = Lista[Int32.Parse(IDc)].count+1;
                     }
                 }
                 using (FileStream IdList = File.Create(IDFile))
@@ -66,7 +66,7 @@ namespace ConsoleApp3file
                    // StreamWriter sw = File.AppendText(IDFile);
                     foreach (var i in Lista)
                     {
-                        Byte[] line = new UTF8Encoding(true).GetBytes($"{Convert.ToString(i.Key)} are {i.Value.count} caractere distincte\n");
+                        Byte[] line = new UTF8Encoding(true).GetBytes($"{Convert.ToString(i.Key)} are {i.Value.count} grupuri de caractere distincte\n");
                         IdList.Write(line, 0, line.Length);
                     }
 
