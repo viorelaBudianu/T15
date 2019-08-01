@@ -22,9 +22,10 @@ namespace ConsoleApp3file
     class Program
     {
         private const string FileName = "data.txt";
-        private const string IDFile = "IDS.txt";
+
         static void Main(string[] args)
         {
+            string IDFile = @"C:\Users\vbudianu\Desktop\VIO\t15\ConsoleApp3file\IDS.txt";
             try
             {
                 if (File.Exists(IDFile))
@@ -34,39 +35,49 @@ namespace ConsoleApp3file
                 }
 
                 // Create the file.
+
+                string[] lines = File.ReadAllLines(FileName);
+                
+                const string ID = @"\d+";
+                const string Value = @"\d+\t(?<b>.*$)";
+                Dictionary<int, Obiect> Lista = new Dictionary<int, Obiect>();
+                Console.WriteLine(lines[1]);
+                Match IDcuvant1 = Regex.Match(lines[1], ID);
+                Console.WriteLine(IDcuvant1.Groups[0].Value);
+                foreach (var i in lines)
+                {
+                    Match IDcuvant = Regex.Match(i, ID);
+                    Match Cuvant = Regex.Match(i, Value);
+                    var IDc = IDcuvant.Groups[0].Value.ToString();
+                    Console.WriteLine(IDcuvant.Groups[0].Value);
+
+
+                    if (!Lista.ContainsKey(Int32.Parse(IDc)))
+                    {
+                        Lista.Add(Int32.Parse(IDc), new Obiect(Convert.ToString(Cuvant), 1));
+                    }
+                    else
+                    {
+                        Lista[Int32.Parse(IDc)].count = Lista[Int32.Parse(IDc)].count++;
+                    }
+                }
                 using (FileStream IdList = File.Create(IDFile))
                 {
-                    string[] lines = File.ReadAllLines(FileName);
-                    const string ID = @"(?<a>\d+)\t";
-                    const string Value = @"\t(?<b>.*$)";
-                    Dictionary<int, Obiect> Lista = new Dictionary<int, Obiect>();
-                    
-
-                    foreach (var i in lines)
+                   // StreamWriter sw = File.AppendText(IDFile);
+                    foreach (var i in Lista)
                     {
-                        Match IDcuvant = Regex.Match(i, ID);
-                        Match Cuvant = Regex.Match(i, Value);
-                        
-                        if (!Lista.ContainsKey(Convert.ToInt32(IDcuvant)))
-                        {
-                            Lista.Add(Convert.ToInt32(IDcuvant), new Obiect(Convert.ToString(Cuvant), 1));
-                        }
-                        else
-                        {
-                            Lista[Convert.ToInt32(IDcuvant)].count = Lista[Convert.ToInt32(IDcuvant)].count++;
-                        }
+                        Byte[] line = new UTF8Encoding(true).GetBytes($"{Convert.ToString(i.Key)} are {i.Value.count} caractere distincte\n");
+                        IdList.Write(line, 0, line.Length);
                     }
 
-                    StreamWriter sw = File.AppendText(IDFile);
-                    
 
 
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-            } 
+                Console.WriteLine(e.StackTrace + e.Message);
+            }
 
 
         }
