@@ -52,5 +52,11 @@
   <ItemGroup>
     <Content Include="data.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsoleApp3file\firstProblem.csproj">
+      <Project>{35B4BB8E-9160-4BFE-BBD2-9060D9AC641A}</Project>
+      <Name>firstProblem</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

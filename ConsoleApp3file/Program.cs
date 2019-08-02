@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -8,17 +9,6 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp3file
 {
-    internal class Obiect
-    {
-        internal string caractere;
-        internal int count;
-
-        public Obiect(string caracter, int count)
-        {
-            this.caractere = caracter;
-            this.count = count;
-        }
-    }
     class Program
     {
         private const string FileName = "data.txt";
@@ -34,8 +24,9 @@ namespace ConsoleApp3file
                     File.Delete(IDFile);
                 }
 
-                // Create the file.
-
+                
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
                 string[] lines = File.ReadAllLines(FileName);
                 
                 const string ID = @"\d+";
@@ -58,6 +49,7 @@ namespace ConsoleApp3file
                     }
                     else
                     {
+
                         Lista[Int32.Parse(IDc)].count = Lista[Int32.Parse(IDc)].count+1;
                     }
                 }
@@ -70,6 +62,8 @@ namespace ConsoleApp3file
                         IdList.Write(line, 0, line.Length);
                     }
 
+                    Byte[] time = new UTF8Encoding(true).GetBytes($"Time spent: {stopwatch.ElapsedMilliseconds.ToString()} ms");
+                    IdList.Write(time, 0, time.Length);
 
 
                 }
