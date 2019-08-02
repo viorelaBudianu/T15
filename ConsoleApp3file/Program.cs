@@ -35,6 +35,7 @@ namespace ConsoleApp3file
                 Console.WriteLine(lines[1]);
                 Match IDcuvant1 = Regex.Match(lines[1], ID);
                 Console.WriteLine(IDcuvant1.Groups[0].Value);
+
                 foreach (var i in lines)
                 {
                     Match IDcuvant = Regex.Match(i, ID);
