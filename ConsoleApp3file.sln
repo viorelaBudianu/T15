@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problema1Sync", "Problema1S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParallelLetter", "ParallelLetter\ParallelLetter.csproj", "{39A8007F-3F5C-46B7-81C0-C7E2DB4ECCC6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Problema3-with TPL", "Problema3-with TPL\Problema3-with TPL.csproj", "{92635C11-A935-4F62-8275-A3D2BFAB40B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{39A8007F-3F5C-46B7-81C0-C7E2DB4ECCC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39A8007F-3F5C-46B7-81C0-C7E2DB4ECCC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39A8007F-3F5C-46B7-81C0-C7E2DB4ECCC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92635C11-A935-4F62-8275-A3D2BFAB40B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92635C11-A935-4F62-8275-A3D2BFAB40B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92635C11-A935-4F62-8275-A3D2BFAB40B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92635C11-A935-4F62-8275-A3D2BFAB40B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
